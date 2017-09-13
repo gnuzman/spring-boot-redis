@@ -29,11 +29,13 @@ public class RedisController {
             System.out.println(k.toString() + v.toString());
         });
 
-        redisTemplate.opsForList().range("lk1", 0L, redisTemplate.opsForList().size("lk1"));
-        for (Long i = 0L, n = redisTemplate.opsForList().size("lk1"); i < n; i++) {
-            Object data2 = redisTemplate.opsForList().leftPop("lk1");
-            System.out.println(data2.toString());
-        }
+        redisTemplate.opsForList().range("lk1", 0L, redisTemplate.opsForList().size("lk1")).forEach(value->{
+            System.out.println(value.toString());
+        });
+//        for (Long i = 0L, n = redisTemplate.opsForList().size("lk1"); i < n; i++) {
+//            Object data2 = redisTemplate.opsForList().leftPop("lk1");
+//            System.out.println(data2.toString());
+//        }
         return "get";
     }
 }
